@@ -32,24 +32,50 @@ const askUser = () => {
         },
         {
             type: 'input',
-            message: 'Now lets about the installation! What are the steps required to install your project?',
+            message: 'Now lets talk about the installation! What are the steps required to install your project?',
             name: 'installation',
         },
     ]);
 };
 const writeREADME = ({ title, description, description1, description2, description3, installation }) =>
     `#${title}
-#Table of content
-${description}
-${description1}
-${description2}
-${description3}
+
+##Description
+A little bit about the motivation behind this project and why it was built. What it helped solve and what was learned from it.
+- ${description}
+- ${description1}
+- ${description2}
+- ${description3}
+
+##Table of content
+
+- [Description](#description)
+
+- [Installation](#installation)
+
+- [Usage](#usage)
+
+- [License](#license)
+
+- [Contributing](#contributing)
+
+- [Tests](#tests)
+
+- [Questions](#questions)
+
+##Installation
+
+######Now let's talk about the installation process!
 ${installation}
+
+
 `;
 
 const init = () => {
     askUser()
-        .then((answers) => fs.writeFileSync('README.md', writeREADME(answers)))
+        .then((answers) => fs.writeFile('README.md', writeREADME(answers), (err) =>
+            err ? console.error(err) : console.log("Your README has been created!")
+        ));
 
 };
 
