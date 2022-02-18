@@ -77,7 +77,7 @@ const writeREADME = ({ title, description, description1, description2, descripti
    
  
 ##Description
-A little bit about the motivation behind this project and why it was built. What it helped solve and what was learned from it.
+A little bit about the motivation behind this project and why it was built. Also what it helped solve and what was learned from it.
 - ${description}
 - ${description1}
 - ${description2}
@@ -147,7 +147,5 @@ const init = () => {
         ));
 
 };
-
-
 
 init();
