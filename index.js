@@ -1,13 +1,14 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+const gitURL;
+const gitUser = username;
 
 const askUser = () => {
     return inquirer.prompt([
 
         {
             type: 'input',
-            message: 'Lets work on the description! What is the title of your README?',
+            message: 'What is the title of your README?',
             name: 'title',
         },
         {
@@ -32,14 +33,49 @@ const askUser = () => {
         },
         {
             type: 'input',
-            message: 'Now lets talk about the installation! What are the steps required to install your project?',
+            message: 'Now lets talk about the installation! What command would I need to install the necessary dependencies?',
             name: 'installation',
         },
+        {
+            type: 'input',
+            message: 'How can this project be used?',
+            name: 'usage',
+        },
+        {
+            type: 'list',
+            message: 'What kind of license should your project have?',
+            choices: ['MIT', 'Apache License 2.0', 'GNU General Public License v3.0', 'BSD 2-Clause "Simplified" License', 'BSD 3-Clause "New" or "Revised" License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'Mozilla Public License 2.0', 'The Unlicense', 'There is no license for this project'],
+            name: 'license',
+        },
+        {
+            type: 'input',
+            message: 'How can a user contribute to this project?',
+            name: 'contribute',
+        },
+        {
+            type: 'input',
+            message: 'What command can be run to test this project?',
+            name: 'test',
+        },
+
+        {
+            type: 'input',
+            message: 'What email address can you be contacted at?',
+            name: 'email',
+        },
+
+        {
+            type: 'input',
+            message: 'What is your GitHub user name?',
+            name: 'username',
+        },
+
     ]);
 };
-const writeREADME = ({ title, description, description1, description2, description3, installation }) =>
+const writeREADME = ({ title, description, description1, description2, description3, installation, usage, license, contribute, URL, test, email }) =>
     `#${title}
-
+   
+ 
 ##Description
 A little bit about the motivation behind this project and why it was built. What it helped solve and what was learned from it.
 - ${description}
@@ -49,27 +85,60 @@ A little bit about the motivation behind this project and why it was built. What
 
 ##Table of content
 
-- [Description](#description)
+- [Description](#Description)
 
-- [Installation](#installation)
+- [Installation](#Installation)
 
-- [Usage](#usage)
+- [Usage](#Usage)
 
-- [License](#license)
+- [License](#License)
 
-- [Contributing](#contributing)
+- [Contributing](#Contributing)
 
 - [Tests](#tests)
 
-- [Questions](#questions)
+- [Questions](#Questions)
 
-##Installation
+##Installation -
 
-######Now let's talk about the installation process!
+Use the following package manager
+
 ${installation}
 
 
-`;
+#Usage-
+
+
+${usage}
+
+#License-
+
+This project is licensed by ${license}.
+
+   
+#How to contribute-
+
+${contribute}
+
+#Tests-
+
+A user can run the following command to test this project 
+
+${test}
+
+#Questions-
+
+If you have nay questions about this project then you can contact me directly at 
+
+${email}
+----
+To see more of my work check out my GitHub-
+
+[]()
+
+link:  ${URL}
+`
+    ;
 
 const init = () => {
     askUser()
@@ -78,6 +147,7 @@ const init = () => {
         ));
 
 };
+
 
 
 init();
