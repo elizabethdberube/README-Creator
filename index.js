@@ -8,12 +8,12 @@ const askUser = () => {
         {
             type: 'input',
             message: 'What is the title of your README?',
-            name: 'title0',
+            name: 'title',
         },
         {
             type: 'input',
             message: ' What was your motivation for this project?',
-            name: 'description0',
+            name: 'description',
         },
         {
             type: 'input',
@@ -33,53 +33,55 @@ const askUser = () => {
         {
             type: 'input',
             message: 'Now lets talk about the installation! What command would I need to install the necessary dependencies?',
-            name: 'installation0',
+            name: 'installation',
         },
         {
             type: 'input',
             message: 'How can this project be used?',
-            name: 'usage0',
+            name: 'usage',
         },
         {
             type: 'list',
             message: 'What kind of license should your project have?',
             choices: ['MIT', 'Apache License 2.0', 'GNU General Public License v3.0', 'BSD 2-Clause "Simplified" License', 'BSD 3-Clause "New" or "Revised" License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'Mozilla Public License 2.0', 'The Unlicense', 'There is no license for this project'],
-            name: 'license0',
+            name: 'license',
         },
         {
             type: 'input',
             message: 'How can a user contribute to this project?',
-            name: 'contribute0',
+            name: 'contribute',
         },
         {
             type: 'input',
             message: 'What command can be run to test this project?',
-            name: 'test0',
+            name: 'test',
         },
 
         {
             type: 'input',
             message: 'What email address can you be contacted at?',
-            name: 'email0',
+            name: 'email',
         },
 
         {
             type: 'input',
             message: 'What is your GitHub user name?',
-            name: 'GitHub0',
+            name: 'GitHub',
         },
 
     ]);
 };
-const writeREADME = ({ title0, description0, description1, description2, description3, installation0, usage0, license0, contribute0, GitHub0, test0, email0 }) =>
 
-    `##${title0}
+
+const writeREADME = ({ title, description, description1, description2, description3, installation, usage, license, contribute, GitHub, test, email }) =>
+
+    `##${title}
 
  ---  
  
 ## Description
 A little bit about the motivation behind this project and why it was built. Also what it helped solve and what was learned from it.
-1. ${description0}
+1. ${description}
 2. ${description1}
 3. ${description2}
 4. ${description3}
@@ -108,38 +110,38 @@ A little bit about the motivation behind this project and why it was built. Also
 
 Use the following package manager
 
-${installation0}
+${installation}
 
 
 ## Usage-
 
 
-${usage0}
+${usage}
 
 ## License-
 
-This project is licensed by ${license0}.
+This project is licensed by ${license}.
 
    
 ## How to Contribute-
 
-${contribute0}
+${contribute}
 
 ## Tests-
 
 A user can run the following command to test this project 
 
-${test0}
+${test}
 
 ## Questions-
 
 If you have nay questions about this project then you can contact me directly at 
 
-${email0}
+${email}
 ----
 To see more of my work check out my GitHub-
 
- [GitHub](https://www.github.com/${GitHub0}) 
+ [GitHub](https://www.github.com/${GitHub}) 
 `;
 
 
