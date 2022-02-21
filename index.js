@@ -36,8 +36,8 @@ const badgeArray = [{
     theLink: 'https://img.shields.io/badge/License-Mozilla%20Public%202.0-blue',
 },
 {
-    badge: 'None',
-    theLink: 'There is no license for this project',
+    badge: 'The Unlicense',
+    theLink: 'https://img.shields.io/badge/License-The%20Unlicense-red',
 },
 
 ];
@@ -133,6 +133,7 @@ const writeREADME = (response) => {
 ![Image](${badgeLink})`;
     }
     output = output + `
+
  ---  
  
 ## Description
@@ -164,7 +165,7 @@ A little bit about the motivation behind this project and why it was built. Also
 
 # Installation 
 
-Use the following package manager
+You will need to run the following command or commands:
 
 ${installation}
 
@@ -176,7 +177,7 @@ ${usage}
 
 ## License
 
-This project is licensed by ${license}.
+License for this project is set to ${license}.
 
    
 ## How to Contribute
@@ -185,8 +186,6 @@ ${contribute}
 
 ## Tests
 
-A user can run the following command to test this project 
-
 ${test}
 
 ## Questions
@@ -194,10 +193,25 @@ ${test}
 If you have nay questions about this project then you can contact me directly at 
 
 ${email}
+
 ----
-To see more of my work check out my GitHub-
+To see more of my work check out my GitHub
 
  [GitHub](https://www.github.com/${GitHub}) 
+
+----
+
+To see a video of this being demonstrated follow this link:
+
+[Screencastify](https://drive.google.com/drive/folders/111q4XMAyx5iarrUBsHIsW_93NX63eOHe?usp=sharing) 
+
+----
+
+
+
+![image](screenshot.png)
+
+ 
 `;
     return output;
 };
