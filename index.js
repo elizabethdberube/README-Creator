@@ -2,6 +2,46 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 
+const badgeArray = [{
+
+    badge: 'MIT',
+    theLink: 'https://img.shields.io/badge/License-MIT-blue',
+},
+{
+    badge: 'Apache 2.0',
+    theLink: 'https://img.shields.io/badge/License-Apache%20License%202.0-lightgrey',
+},
+{
+    badge: 'GNU General Public v3.0',
+    theLink: 'https://img.shields.io/badge/License-MIT-blue',
+},
+{
+    badge: 'BSD 2-Clause "Simplified"',
+    theLink: 'https://img.shields.io/badge/License-BSD%202--Clause%20%22Simplified%22%20-yellow',
+},
+{
+    badge: 'Boost Software 1.0',
+    theLink: 'https://img.shields.io/badge/License-Boost%20Software%201.0%20-red',
+},
+{
+    badge: 'Creative Commons Zero v1.0 Universal',
+    theLink: 'https://img.shields.io/badge/License-Creative%20Commons%20Zero%20v1.0%20Universal-green',
+},
+{
+    badge: 'Eclipse Public License 2.0',
+    theLink: 'https://img.shields.io/badge/License-Eclipse%20Public%20License%202.0-yellowgreen',
+},
+{
+    badge: 'Mozilla Public 2.0',
+    theLink: 'https://img.shields.io/badge/License-Mozilla%20Public%202.0-blue',
+},
+{
+    badge: 'None',
+    theLink: 'There is no license for this project',
+},
+
+];
+
 const askUser = () => {
     return inquirer.prompt([
 
@@ -43,8 +83,9 @@ const askUser = () => {
         {
             type: 'list',
             message: 'What kind of license should your project have?',
-            choices: ['MIT', 'Apache License 2.0', 'GNU General Public License v3.0', 'BSD 2-Clause "Simplified" License', 'BSD 3-Clause "New" or "Revised" License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'Mozilla Public License 2.0', 'The Unlicense', 'There is no license for this project'],
+            choices: ['MIT', 'Apache 2.0', 'GNU General Public v3.0', 'BSD 2-Clause "Simplified"', 'Boost Software 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'Mozilla Public 2.0', 'The Unlicense', 'None'],
             name: 'license',
+            //      theLink: ['https://img.shields.io/badge/License-MIT-blue', 'https://img.shields.io/badge/License-Apache%20License%202.0-lightgrey', 'https://img.shields.io/badge/License-MIT-blue', 'https://img.shields.io/badge/License-BSD%202--Clause%20%22Simplified%22%20-yellow', 'https://img.shields.io/badge/License-Boost%20Software%201.0%20-red', 'https://img.shields.io/badge/License-Creative%20Commons%20Zero%20v1.0%20Universal-green', 'https://img.shields.io/badge/License-Eclipse%20Public%20License%202.0-yellowgreen', 'https://img.shields.io/badge/License-Mozilla%20Public%202.0-blue', 'https://img.shields.io/badge/no-license-red']
         },
         {
             type: 'input',
@@ -73,10 +114,25 @@ const askUser = () => {
 };
 
 
-const writeREADME = ({ title, description, description1, description2, description3, installation, usage, license, contribute, GitHub, test, email }) =>
+const writeREADME = (response) => {
+    let { title, description, description1, description2, description3, installation, license, usage, contribute, GitHub, test, email } = response;
+    let badgeLink;
 
-    `##${title}
+    badgeArray.forEach((currentBadge) => {
+        let { badge, theLink } = currentBadge;
 
+        if (license == badge) {
+
+            badgeLink = theLink;
+        }
+    });
+
+    let output = `## ${title}`;
+    if (badgeLink) {
+        output = output + `
+![Image](${badgeLink})`;
+    }
+    output = output + `
  ---  
  
 ## Description
@@ -88,7 +144,7 @@ A little bit about the motivation behind this project and why it was built. Also
 
 ---
 
-##Table of content
+## Table of content
 
 * [Description](#description)
 
@@ -106,34 +162,34 @@ A little bit about the motivation behind this project and why it was built. Also
 
 ---
 
-# Installation -
+# Installation 
 
 Use the following package manager
 
 ${installation}
 
 
-## Usage-
+## Usage
 
 
 ${usage}
 
-## License-
+## License
 
 This project is licensed by ${license}.
 
    
-## How to Contribute-
+## How to Contribute
 
 ${contribute}
 
-## Tests-
+## Tests
 
 A user can run the following command to test this project 
 
 ${test}
 
-## Questions-
+## Questions
 
 If you have nay questions about this project then you can contact me directly at 
 
@@ -143,6 +199,8 @@ To see more of my work check out my GitHub-
 
  [GitHub](https://www.github.com/${GitHub}) 
 `;
+    return output;
+};
 
 
 
