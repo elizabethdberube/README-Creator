@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-
+//function for what the user will be prompted with
 const askUser = () => {
     return inquirer.prompt([
 
@@ -72,7 +72,7 @@ const askUser = () => {
     ]);
 };
 
-
+// function for writing layout of README
 const writeREADME = ({ title, description, description1, description2, description3, installation, usage, license, contribute, GitHub, test, email }) =>
 
     `##${title}
@@ -145,7 +145,7 @@ To see more of my work check out my GitHub-
 `;
 
 
-
+//function to write data to a file and what to do if there is an error
 const init = () => {
     askUser()
         .then((answers) => fs.writeFile('README.md', writeREADME(answers), (err) =>
